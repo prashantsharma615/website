@@ -1,191 +1,75 @@
-# Sukoon by Pallavi — Women's Fashion E-Commerce Website
+# ÉCLAT Skin Lab — Skin Type Finder
 
-An elegant, minimal, mobile-friendly e-commerce website for **Sukoon by Pallavi**, founded by **Pallavi Gupta** (Contact: **+91 7006181540**). Designed with a warm cream, beige, and black palette reflecting Indian fashion boutique aesthetics.
+A modern, professional, mobile-friendly interactive skin analysis web application that helps customers identify their exact skin type and receive tailored skincare recommendations.
 
----
-
-## 🌟 Features
-
-- **Storefront & Categories:**
-  - Dedicated pages and filters for:
-    - **Kurtas & Kurtis**
-    - **Suits**
-    - **Sarees**
-    - **Western Dresses**
-  - Instant live search by product name and description.
-  - Sort by price (low to high, high to low) and newest arrivals.
-- **Product Detail Experience:**
-  - Multi-image gallery with clickable thumbnail selector.
-  - Interactive Size and Colour selection chips.
-  - Stock level indicators (In Stock, Low Stock, Out of Stock).
-  - Quantity counter with stock limit validation.
-  - Single-product direct WhatsApp order button.
-  - Add to Shopping Bag button with instant feedback.
-- **Shopping Bag (Cart):**
-  - Fully persistent cart stored in browser `localStorage`.
-  - Item listing with size, colour, line item price, and quantity controls.
-  - Real-time subtotal and total calculations.
-  - Item removal with toast notifications.
-  - One-click **Order via WhatsApp** button that creates a pre-filled, formatted order summary for WhatsApp chat with the business owner.
-- **Owner & Brand Story:**
-  - Founder section featuring Pallavi Gupta's uploaded photograph and boutique story.
-  - Direct contact links via phone and WhatsApp.
-- **Secure Admin Dashboard (`/admin.html`):**
-  - Server-side session authentication with `bcrypt` password hashing.
-  - Dashboard statistics: Total products, In stock, Out of stock, Featured count.
-  - Product management table with quick status badges and action buttons.
-  - Modal for adding and editing products:
-    - Multiple image upload with client-side drag-and-drop preview.
-    - Tag input for available sizes and colours (press Enter or comma).
-    - Stock quantity and pricing/discount fields with validation.
-    - Featured, New Arrival, and Availability toggles.
-  - Deletion confirmation dialog with automatic image cleanup.
-  - Secure session logout.
+![ÉCLAT Skin Lab](https://img.shields.io/badge/Skin%20Type%20Finder-ÉCLAT%20Skin%20Lab-C47C72?style=for-the-badge)
+![Tech](https://img.shields.io/badge/Vanilla-HTML5%20%7C%20CSS3%20%7C%20ES6+-E8D5CE?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-221F1E?style=for-the-badge)
 
 ---
 
-## 📁 Project Structure
+## Overview
+
+**ÉCLAT Skin Lab** is designed with a minimal, elegant beauty-brand aesthetic (soft cream, beige, white, and blush palette, clean typography, and ample white space—strictly with no gradients or excessive animations). 
+
+The platform guides customers through a 6-step dermatological questionnaire, computes an estimated skin type with transparent scoring, evaluates sensitivity as an independent co-occurring characteristic, and generates a personalized morning and evening routine with ingredient guidance.
+
+---
+
+## Key Features
+
+- **Personalized Diagnostic Quiz**: 6 targeted questions evaluating post-wash feeling, midday shine, pore appearance, reactivity, daily feel, and primary concerns.
+- **Transparent Scoring System**: Visual diagnostic breakdown showing percentage weighting across all core skin profiles (Oily, Dry, Combination, Normal).
+- **Independent Sensitivity Analysis**: Evaluates skin reactivity (High, Moderate, Low/Resilient) independently, accommodating that any skin type can be sensitive.
+- **Conflict & Mixed Profile Detection**: Safely identifies complex or conflicting skin signals (e.g., dehydrated oily barriers) and suggests professional consultation.
+- **Customized AM & PM Skincare Routines**: Step-by-step regimen tailored to barrier recovery and protection.
+- **Ingredient Guidance**: Lists of *“Ingredients to Love”* and *“Ingredients to Approach with Caution”*.
+- **Print & Download**: Clean `@media print` styling for saving results as PDF or printing.
+- **WhatsApp Integration**: One-click consultation button with pre-filled message including the customer's skin type and sensitivity profile.
+- **Privacy First**: 100% client-side execution; zero tracking, cookies, or data storage without explicit user action.
+
+---
+
+## File Structure
 
 ```text
 website/
-├── admin.html               # Admin login & product management dashboard
-├── cart.html                # Shopping bag & WhatsApp checkout page
-├── index.html               # Boutique homepage with hero, categories, about & contact
-├── product.html             # Dedicated product detail page with gallery & options
-├── shop.html                # Product catalog with category filters, search & sorting
-├── package.json             # Backend dependencies and run scripts
-├── .env.example             # Example environment configuration
-├── .env                     # Local environment secrets & settings
-├── backend/
-│   ├── database.js          # SQLite connection and table initialization
-│   ├── seed.js              # Script to seed database with sample boutique catalog
-│   ├── server.js            # Express server (REST API, sessions, file uploads)
-│   └── data/
-│       └── sukoon.db        # SQLite database file (created automatically)
-├── css/
-│   ├── style.css            # Storefront design system (typography, layouts, responsive)
-│   └── admin.css            # Admin dashboard styling
-├── js/
-│   ├── config.js            # Business details, WhatsApp number, and default catalog
-│   ├── main.js              # Shared utilities (cart, toast, menu, product cards, API fetch)
-│   ├── shop.js              # Shop page filtering, search, and sorting logic
-│   ├── product.js           # Product detail page logic (gallery, sizes, add-to-bag)
-│   ├── cart.js              # Cart management and WhatsApp checkout builder
-│   └── admin.js             # Admin dashboard operations and authentication
-└── images/
-    ├── owner.jpg            # Pallavi Gupta founder portrait
-    └── products/
-        └── uploads/         # Uploaded product photographs
+├── index.html       # Semantic HTML5 layout with accessible ARIA landmarks & modals
+├── style.css        # Minimalist luxury design system, responsive breakpoints & print styles
+├── script.js        # Questionnaire state machine, scoring engine & DOM handlers
+└── README.md        # Documentation
 ```
 
 ---
 
-## 🚀 Running the Website Locally
+## Local Setup & Quickstart
 
-### Prerequisites
-- [Node.js](https://nodejs.org/) (v18 or higher recommended)
-- [npm](https://www.npmjs.com/) (bundled with Node.js)
+No dependencies or build steps required. Simply clone and open:
 
-### 1. Configure Environment Variables
-Copy `.env.example` to `.env` (already created):
 ```bash
-cp .env.example .env
+# Clone the repository
+git clone https://github.com/prashantsharma615/website.git
+
+# Navigate into the project directory
+cd website
+
+# Run with any local server (e.g., Python 3)
+python -m http.server 8080
+
+# Or open directly in your browser
+open index.html
 ```
 
-Review or modify `.env`:
-```env
-PORT=3000
-ADMIN_USERNAME=admin
-ADMIN_PASSWORD=Sukoon@Pallavi2026
-SESSION_SECRET=your_random_secure_session_secret
-MAX_UPLOAD_SIZE=5
-```
-
-### 2. Install Dependencies
-```bash
-npm install
-```
-
-### 3. Seed the Database
-Populate the SQLite database with the curated boutique sample products:
-```bash
-npm run seed
-```
-
-### 4. Start the Server
-```bash
-npm start
-```
-
-Open your browser and navigate to:
-- **Storefront:** [http://localhost:3000](http://localhost:3000)
-- **Admin Dashboard:** [http://localhost:3000/admin.html](http://localhost:3000/admin.html)
+Visit `http://localhost:8080` in your browser.
 
 ---
 
-## 🔐 Admin Authentication Credentials
+## Disclaimer
 
-By default:
-- **Username:** `admin`
-- **Password:** `Sukoon@Pallavi2026`
-
-To change the admin password:
-1. Update `ADMIN_PASSWORD` in your `.env` file.
-2. If the user already exists in `backend/data/sukoon.db`, update it or remove `backend/data/sukoon.db` and restart the server to recreate the admin user with the new hash.
+This quiz provides general skincare information and does not diagnose skin conditions. Results are estimates and may vary with weather, products, hormones, and other factors. Consult a board-certified dermatologist for medical diagnosis or chronic cutaneous concerns.
 
 ---
 
-## 📷 Changing the Owner Photograph
+## License
 
-The founder photograph is located at:
-```text
-images/owner.jpg
-```
-To replace it:
-1. Save your photograph as a JPG image.
-2. Replace `images/owner.jpg` with your file.
-3. Refresh the homepage; the image in the **About** section will update automatically.
-
----
-
-## 📱 WhatsApp Order Flow
-
-1. The customer selects sizes, colours, and quantities and adds items to the shopping bag.
-2. On the **Bag (`cart.html`)** page, clicking **"Order via WhatsApp"** opens WhatsApp Web or the WhatsApp app.
-3. A pre-composed, structured message is generated addressed to **+91 7006181540** containing:
-   - All product names and IDs.
-   - Selected sizes and colours.
-   - Individual quantities and prices.
-   - Order subtotal and total.
-4. The customer simply presses **Send** in WhatsApp to communicate directly with Pallavi.
-
----
-
-## 🌐 Online Deployment Guide
-
-### Deploying to Platforms (Render, Railway, DigitalOcean, VPS)
-
-1. **Push your code to GitHub / Git repository.**
-2. **Environment Variables:**
-   Set the following environment variables in your hosting provider's dashboard:
-   - `PORT=3000` (or leave default if provided by the host)
-   - `ADMIN_USERNAME=your_chosen_admin_username`
-   - `ADMIN_PASSWORD=your_secure_password`
-   - `SESSION_SECRET=generate_a_long_random_string`
-   - `MAX_UPLOAD_SIZE=5`
-3. **Build & Start Command:**
-   - **Build Command:** `npm install`
-   - **Start Command:** `npm run seed && npm start` (or `npm start` after initial seed)
-4. **Persistent Disk (Optional but Recommended):**
-   If deploying on container platforms (like Render or Railway), attach a persistent volume to:
-   - `backend/data/` (for the SQLite database)
-   - `images/products/uploads/` (for uploaded product images)
-
----
-
-## 📞 Business Contact
-
-- **Brand:** Sukoon by Pallavi
-- **Founder:** Pallavi Gupta
-- **Phone / WhatsApp:** +91 7006181540
-- **Location:** India
+MIT License. Designed & developed for ÉCLAT Skin Lab.
